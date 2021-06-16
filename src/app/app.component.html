@@ -1,0 +1,19 @@
+<div class="left-section">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search Contacts" value="">
+    </mat-form-field>
+  </form>
+  
+<mat-selection-list #shoes [multiple]="false">
+  <mat-list-option *ngFor="let contact of contactList" [value]="contact.id">
+    {{contact.firstName}} + {{contact.lastName}}
+  </mat-list-option>
+</mat-selection-list>
+</div>
+<div class="right-side">
+  <p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+  </p>
+</div>
+
