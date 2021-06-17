@@ -1,0 +1,25 @@
+.display-contact {
+  border: 1px solid #000;
+}
+
+.display-contact td {
+  padding: 10px;
+}
+
+.display-contact td:first-child {
+  font-weight: 500;
+}
+
+
+.button-section {
+  margin-bottom: 30px;
+}
+
+
+.button {
+  border: 1px solid #000;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}

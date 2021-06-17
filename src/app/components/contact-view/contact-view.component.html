@@ -1,0 +1,37 @@
+<div>
+  <h2 class="d-inline-block">Contact Details</h2>
+</div>
+
+<div>
+    
+  <div class="button-section">
+    <button class="button" mat-button (click)="editValues.emit(displayContact)">Edit</button>
+    <button class="button ml-20" mat-button *ngIf="!displayContact?.isFavourite"
+      (click)="changeFavourite.emit(true)">Add to Favourite</button>
+    <button class="button ml-20" mat-button *ngIf="displayContact?.isFavourite"
+      (click)="changeFavourite.emit(false)">Remove
+      Favourite</button>
+    <button class="button ml-20" mat-button (click)="deleteContact.emit()">Delete</button>
+  </div>
+
+  <table class="display-contact">
+    <tbody>
+      <tr>
+        <td>First Name: </td>
+        <td>{{displayContact?.firstName}}</td>
+      </tr>
+      <tr>
+        <td>Last Name: </td>
+        <td>{{displayContact?.lastName}}</td>
+      </tr>
+      <tr>
+        <td>Favourite: </td>
+        <td>{{displayContact?.isFavourite}}</td>
+      </tr>
+      <tr *ngFor="let contact of displayContact?.contacts">
+        <td>{{contact?.type | titlecase}}: </td>
+        <td>{{contact?.number}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

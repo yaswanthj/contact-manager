@@ -7,5 +7,5 @@ export interface Contact {
       number: number
     } [],
     isFavourite: boolean
-
 }
+

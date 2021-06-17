@@ -1,83 +1,17 @@
 <div class="header">
   <h2>Contacts App</h2>
 </div>
+
 <div class="body-section">
   <div class="left-section">
-    <div>
-      <input class="searchInput" placeholder="Search with Name, Number, Contact ID" matInput type="text"
-        [(ngModel)]="searchValue" (ngModelChange)="searchContacts(searchValue)">
-      <button mat-button color="primary" (click)="addContact()" class="create-button">Create</button>
-    </div>
-
-    <div class="list-items">
-      <mat-selection-list #contacts [multiple]="false">
-        <mat-list-option *ngFor="let contact of showList; let index = index" (click)="contactSelected(contact, index)">
-          {{contact.firstName}} {{contact.lastName}}
-        </mat-list-option>
-      </mat-selection-list>
-    </div>
+    <app-contact-list [showList]="showList" (contactSelected)="contactSelected($event)"
+      (searchList)="searchContacts($event)" (addContact)="addContact()"></app-contact-list>
   </div>
+  
   <div class="right-side">
     <div *ngIf="pageMode === 'display'">
-      <div>
-        <h2 class="d-inline-block">Contact Details</h2>
-      </div>
-      <!-- <div>
-        <span class="actions" *ngIf="!displayContact?.isFavourite" (click)="addtoFavourite(true)">Add to
-          Favourite</span>
-        <span class="actions" *ngIf="displayContact?.isFavourite" (click)="addtoFavourite(false)">Remove
-          Favourite</span>
-        <span class="actions" (click)="delete()">Delete</span>
-        <div>
-          <label class="label-head">First Name: &nbsp;</label>
-          <p class="display-value">{{displayContact?.firstName}}</p>
-        </div>
-        <div>
-          <label class="label-head">Last Name: &nbsp;</label>
-          <p class="display-value">{{displayContact?.lastName}}</p>
-        </div>
-        <div>
-          <label class="label-head">Favourite: &nbsp;</label>
-          <p class="display-value">{{displayContact?.isFavourite}}</p>
-        </div>
-        <div>
-          <p class="label-head">Contact Numbers</p>
-          <div *ngFor="let contact of displayContact?.contacts">
-            <label class="display-value">{{contact?.type | titlecase}}: </label>
-            <p class="display-value">{{contact?.number}}</p>
-          </div>
-        </div> 
-      </div>-->
-
-      <div>
-        <div class="button-section">        
-          <button class="button" mat-button (click)="loadValues(displayContact)">Edit</button>
-          <button class="button ml-20" mat-button  *ngIf="!displayContact?.isFavourite" (click)="addtoFavourite(true)">Add to Favourite</button>
-          <button class="button ml-20" mat-button *ngIf="displayContact?.isFavourite" (click)="addtoFavourite(false)">Remove
-            Favourite</button>
-          <button class="button ml-20" mat-button (click)="delete()">Delete</button>
-        </div>
-        <table class="display-contact">
-          <tbody>
-            <tr>
-              <td>First Name: </td>
-              <td>{{displayContact?.firstName}}</td>
-            </tr>
-            <tr>
-              <td>Last Name: </td>
-              <td>{{displayContact?.lastName}}</td>
-            </tr>
-            <tr>
-              <td>Favourite: </td>
-              <td>{{displayContact?.isFavourite}}</td>
-            </tr>
-            <tr *ngFor="let contact of displayContact?.contacts">
-              <td>{{contact?.type | titlecase}}: </td>
-              <td>{{contact?.number}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <app-contact-view [displayContact]="displayContact" (editValues)="loadValues($event)"
+        (changeFavourite)="addtoFavourite($event)" (deleteContact)="delete()"></app-contact-view>
     </div>
 
     <div *ngIf="pageMode === 'add' || pageMode === 'edit'">
@@ -106,18 +40,14 @@
                 <input matInput formControlName="type" placeholder="Enter Type">
               </mat-form-field>
               <mat-form-field appearance="fill">
-                <input matInput formControlName="number" placeholder="Enter Number">
+                <input matInput type="number" maxlength="10" formControlName="number" placeholder="Enter Number">
               </mat-form-field>
             </div>
           </div>
-
-
           <p class="add-button" (click)="addContactField()">Add More Numbers</p>
         </div>
-
-
         <div>
-          <button mat-button class="button" type="submit">Submit</button>
+          <button mat-button class="button" color="primary" type="submit">Submit</button>
         </div>
 
       </form>

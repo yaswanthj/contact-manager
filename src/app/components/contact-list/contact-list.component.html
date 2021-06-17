@@ -1,0 +1,17 @@
+<div>
+    <input class="searchInput" placeholder="Search with Name, Number, Contact ID" matInput type="text"
+      [(ngModel)]="searchValue" (ngModelChange)="searchList.emit(searchValue)">
+    <button mat-button color="primary" (click)="addContact.emit()" class="create-button">Create</button>
+  </div>
+
+  <div *ngIf="showList.length > 0; else noData" class="list-items">
+    <mat-selection-list #contacts [multiple]="false">
+      <mat-list-option *ngFor="let contact of showList; let index = index" (click)="contactSelected.emit({contact:contact, index: index})">
+        {{contact.firstName}} {{contact.lastName}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <ng-template #noData>
+    <h3 class="ml-20">No Contacts found</h3>
+  </ng-template>
+  

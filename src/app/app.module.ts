@@ -9,10 +9,14 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactViewComponent } from './components/contact-view/contact-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactListComponent,
+    ContactViewComponent
   ],
   imports: [
     BrowserModule,

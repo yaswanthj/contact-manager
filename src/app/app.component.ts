@@ -21,14 +21,15 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  searchValue: string;
   displayContact: Contact;
+  pageMode: string = 'add';
+  selectedItem = 0;
+  contactList: Contact[]
+  showList: Contact[]
+
   fb: FormBuilder = new FormBuilder;
   items: FormArray;
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  pageMode: string = 'add';
-  selectedItem = 0;
   contactForm: FormGroup = this.fb.group({
     firstName: ['', [
       Validators.required,
@@ -38,8 +39,6 @@ export class AppComponent {
     ]],
     contacts: this.fb.array([this.createItem()])
   })
-  contactList: Contact[]
-  showList: Contact[]
   constructor(private httpRequestService: HttpRequestsService) {}
 
   ngOnInit() {
@@ -69,10 +68,10 @@ export class AppComponent {
     this.contactForm.reset();
   }
 
-  contactSelected(data, index) {
-    this.selectedItem = index;
+  contactSelected(data) {
+    this.selectedItem = data.index;
     this.pageMode = 'display';
-    this.displayContact = data;
+    this.displayContact = data.contact;
   }
 
   searchContacts(value) {
