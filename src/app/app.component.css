@@ -62,3 +62,14 @@
   cursor: pointer;
   color: blue;
 }
+
+.actions:hover{
+  cursor: pointer;
+  color: blue;
+}
+
+.actions{
+  margin-right: 20px;
+  padding: 5px;
+  border: 1px solid;
+}

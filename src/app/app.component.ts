@@ -28,6 +28,7 @@ export class AppComponent {
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   pageMode: string = 'add';
+  selectedItem = 0;
   contactForm: FormGroup = this.fb.group({
     firstName: ['', [
       Validators.required,
@@ -68,7 +69,8 @@ export class AppComponent {
     this.contactForm.reset();
   }
 
-  contactSelected(data) {
+  contactSelected(data, index) {
+    this.selectedItem = index;
     this.pageMode = 'display';
     this.displayContact = data;
   }
@@ -120,5 +122,15 @@ export class AppComponent {
       lastName: data.lastName,
       contacts: data.contacts
     });
+  }
+
+  delete() {
+    this.showList.splice(this.selectedItem, 1);
+    this.pageMode = 'add';
+  }
+
+  addtoFavourite(value) {
+    this.showList[this.selectedItem].isFavourite = value;
+    sessionStorage.setItem('contacts', JSON.stringify(this.showList));
   }
 }
