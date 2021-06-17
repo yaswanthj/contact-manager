@@ -12,7 +12,7 @@ export class HttpRequestsService {
 
   getContactList(): Contact[] {
     const contacts = JSON.parse(sessionStorage.getItem('contacts'));
-    if (contacts.length > 0) {
+    if (contacts && contacts.length > 0) {
       return contacts
     } else {
       return [{

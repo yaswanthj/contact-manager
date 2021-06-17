@@ -87,6 +87,8 @@ export class AppComponent {
       let formValues = this.contactForm.value;
       if (this.pageMode === 'add') {
         this.showList.push(formValues);
+        this.showList[this.showList.length-1].isFavourite = false;
+        this.displayContact = this.showList[this.showList.length-1];
       } else if (this.pageMode === 'edit') {
         for (let index = 0; index < this.showList.length; index++) {
           if (this.showList[index].id === this.displayContact.id) {
@@ -95,12 +97,12 @@ export class AppComponent {
             this.showList[index].contacts = this.getValidContacts(formValues.contacts);
           }
         }
+        this.displayContact = this.showList[this.selectedItem];
       }
       // this.contactForm.submit = false;
       this.contactForm.reset();
       sessionStorage.setItem('contacts', JSON.stringify(this.showList));
       this.pageMode = 'display';
-      this.displayContact = this.showList[this.showList.length-1]
     }
   }
 

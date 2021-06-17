@@ -2,42 +2,66 @@
   border: 1px solid #000;
   height: 70px;
   padding-left: 20px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.body-section{
+  margin-top: 70px;
+  overflow: auto;
+  height: calc(100vh - 70px);
 }
 
 .left-section {
   width: 30%;
   border: 1px solid #f00;
-  display: inline-block;
-  height: calc(100vh - 80px);
   overflow: auto;
+  position: fixed;
+  top: 72px;
+  bottom: 0;
+  overflow: hidden;
 }
 
 .right-side {
   padding: 0 20px;
-  width: 66%;
   display: inline-block;
   vertical-align: top;
-}
-
-.label-head {
-  font-weight: bold;
-  display: inline-block;
-}
-
-.display-value {
-  display: inline-block;
+  margin-left: 30%;
+  margin-bottom: 30px;
 }
 
 
+.display-contact{
+  border: 1px solid #000;
+}
 
+.display-contact td{
+  padding: 10px;
+}
+
+.display-contact td:first-child{
+  font-weight: 500;
+}
+
+.button-section{
+  margin-bottom: 30px;
+}
 
 .searchInput{
     border: 1px solid #000;
     height: 30px;
     border-radius: 3px;
     margin: 10px 0 0 20px;
-    width: 60%;
+    width: 50%;
     padding: 0 10px;
+}
+
+.list-items{
+  overflow: auto;
+  height: 90%;
+  width: 100%;
 }
 
 .create-button{
